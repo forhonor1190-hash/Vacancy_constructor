@@ -1,9 +1,7 @@
 import os
 import asyncio
 from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher, F
-from aiogram.types import Message
-from aiogram.filters import CommandStart, Command
+from aiogram import Bot, Dispatcher
 from app.handlers import router
 
 
@@ -36,4 +34,3 @@ if __name__ == '__main__':
         asyncio.run(main())
     except KeyboardInterrupt:
         pass
-        

@@ -15,6 +15,13 @@ async def cmd_help(message: Message):
     f"\n""Если у вас появятся технические вопросы, пожалуйста, задайте их эксперту Центра юридических и закупочных практик Даниилу Куйдину <a href='https://t.me/KuidinDaniil'>в телеграмме</a> или по почте KuydinDO@edu.mos.ru. Мы всегда рады помочь!\n", parse_mode='HTML', disable_web_page_preview=True)
 
 
+#Неизвестные команды
+@router.message()
+async def unknown_command(message: Message):
+    await asyncio.sleep(1) #ответ после сна в 1 сек.
+    await message.answer('Это неизвестная команда.')
+
+
 #Приветствие
 @router.message(CommandStart())
 async def cmd_start(message: Message):
@@ -41,7 +48,7 @@ async def cmd_start(message: Message):
                         f"\n""Выберите действие (в поле для ввода сообщений появится специальная иконка):", 
     parse_mode='HTML', 
     disable_web_page_preview=True, #Скрытие превью
-    reply_markup=kb.main_menu
+    reply_murkup=kb.main_menu
 )
 
 
@@ -49,27 +56,91 @@ async def cmd_start(message: Message):
 @router.message(F.text == 'Создать вакансию')
 async def create_vacancy(message: Message):
     await asyncio.sleep(1) #ответ после сна в 1 сек.
-    await message.answer('Выберите тип организации:', 
-                         reply_markup=kb.type_forms)
+    await message.answer('Выберите тип организации:',
+    reply_markup=ReplyKeyboardRemove(), #убираем reply-клавиатуру                      
+    reply_murkup=kb.type_forms
+)
 
 
 #Тип организации 
 @router.callback_query(F.data.startswith('type_forms_'))
 async def type_forms(callback: CallbackQuery):
     await asyncio.sleep(1) #ответ после сна в 1 сек.
-    await callback.answer('Вы сделали свой выбор!', show_alert=True) #всплывающее уведомление
+    await callback.answer('Вы сделали свой выбор!', 
+    show_alert=True) #всплывающее уведомление
     await callback.message.answer(f'Тип организации: {callback.data}')
 
 
 #Название учреждения
 async def name(message: Message):
-    await message.answer('Введите название учреждения:')
+    await message.answer('Введите название учреждения:', 
+    ...
+)
+    
+"""
+"""
+
+
+#Должность
+async def position(message: Message):
+    await message.answer('Выберите должность:', 
+    reply_markup=kb.position
+)
+    
+@router.callback_query(F.data.startswith('position_'))
+async def position(callback: CallbackQuery):
+    await asyncio.sleep(1) #ответ после сна в 1 сек.
+    await callback.answer('Вы сделали свой выбор!', 
+    show_alert=True) #всплывающее уведомление
+    await callback.message.answer(f'Должность: {callback.data}')
     
 
-#Неизвестные команды
-@router.message()
-async def unknown_command(message: Message):
+#Функционал
+async def functions(message: Message):
+    await message.answer('Выберите функционал для соискателя (можно выбрать несколько):', 
+    reply_markup=kb.functions
+)
+
+@router.callback_query(F.data.startswith('functions_'))
+async def functions(callback: CallbackQuery):
     await asyncio.sleep(1) #ответ после сна в 1 сек.
-    await message.answer('Это неизвестная команда.')
+    await callback.answer('Вы сделали свой выбор!', 
+    show_alert=True) #всплывающее уведомление
+    await callback.message.answer(f'Функционал: - {callback.data}')
 
 
+#Дополнительные требования
+async def functions(message: Message):
+    await message.answer('Выберите дополнительные требования (можно выбрать несколько):', 
+    reply_markup=kb.requirements
+)
+    
+@router.callback_query(F.data.startswith('requirements_'))
+async def requirements(callback: CallbackQuery):
+    await asyncio.sleep(1) #ответ после сна в 1 сек.
+    await callback.answer('Вы сделали свой выбор!', 
+    show_alert=True) #всплывающее уведомление
+    await callback.message.answer(f'Дополнительные требования: - {callback.data}')
+
+
+#Доход
+async def salary(message: Message):
+    await message.answer('Введите уровень дохода в месяц, в тыс. руб.:', 
+    ...
+)
+"""
+"""
+
+
+    
+"""
+#Стартовые Reply-кнопки "Редактирование"
+@router.message(F.text == 'Редактировать вакансию')
+async def create_vacancy(message: Message):
+    pass
+
+#Стартовые Reply-кнопки "Снятие с размещения"
+@router.message(F.text == 'Снять вакансию с размещения')
+async def create_vacancy(message: Message):
+    pass
+"""
