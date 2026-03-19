@@ -7,4 +7,7 @@ class VC(StatesGroup):
     posposition = State() #Должность
     functions = State() #Функции
     requirements = State() #Дополнительные требования
+    salary = State() #Зарплата
+    email = State() #Почта
+    number = State() #Телефон
     

@@ -22,13 +22,13 @@ position = InlineKeyboardMarkup(inline_keyboard=[
 ])
 
 functions = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Инициатор закупки (формирование потребности)',                              callback_data='functions_iniciator')],
+    [InlineKeyboardButton(text='Инициатор закупки (формирование потребности)', callback_data='functions_iniciator')],
     [InlineKeyboardButton(text='Предварительный сбор данных о потребностях, ценах на товары, работы, услуги (анализ рынка)', callback_data='functions_analiz_runka')],
-    [InlineKeyboardButton(text='Разработка технической документации, в т. ч. технического задания',         callback_data='functions_razrabotka')],
+    [InlineKeyboardButton(text='Разработка технической документации, в т. ч. технического задания', callback_data='functions_razrabotka')],
 ])
 
 requirements = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Наличие действующего сертификата ЕАИСТ',                                                                              callback_data='requirements_EAIST')],
-    [InlineKeyboardButton(text='На момент отклика на вакансию состоит в реестре работников КС и членов комиссий по осуществлению закупок',             callback_data='requirements_REESTR')],
-    [InlineKeyboardButton(text='Готов пройти оценочные мероприятия',                                                                                  callback_data='requirements_OM')],
+    [InlineKeyboardButton(text='Наличие действующего сертификата ЕАИСТ', callback_data='requirements_EAIST')],
+    [InlineKeyboardButton(text='На момент отклика на вакансию состоит в реестре работников КС и членов комиссий по осуществлению закупок', callback_data='requirements_REESTR')],
+    [InlineKeyboardButton(text='Готов пройти оценочные мероприятия', callback_data='requirements_OM')],
 ])

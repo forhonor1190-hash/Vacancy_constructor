@@ -5,6 +5,9 @@ from aiogram.filters import CommandStart, Command
 from aiogram.enums import ChatAction
 import app.keyboards as kb
 
+from aiogram.fsm.context import FSMContext
+from app.states import VacancyCreationState
+
 router = Router()
 
 
